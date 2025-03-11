@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Perpustakaan North</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS Kustom -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center">Login Perpustakaan North</h2>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="nisn" class="form-label">NISN</label>
+                <input type="text" class="form-control" id="nisn" required>
+                <small class="text-danger" id="nisnError"></small>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="name" required>
+                <small class="text-danger" id="nameError"></small>
+            </div>
+            <div class="mb-3">
+                <label for="class" class="form-label">Kelas</label>
+                <input type="text" class="form-control" id="class" required>
+                <small class="text-danger" id="classError"></small>
+            </div>
+            <div class="mb-3">
+                <label for="school" class="form-label">Sekolah</label>
+                <input type="text" class="form-control" id="school" required>
+                <small class="text-danger" id="schoolError"></small>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Kata Sandi</label>
+                <input type="password" class="form-control" id="password" required>
+                <small class="text-danger" id="passwordError"></small>
+                <small class="text-muted" id="passwordHint" style="display: none;">Hint: smk8cerdas</small>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Masuk</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah form dikirim langsung
+            let isValid = true;
+            let loginAttempts = 0;
+
+            // Validasi NISN
+            let nisn = document.getElementById("nisn").value;
+            if (nisn === "") {
+                document.getElementById("nisnError").innerText = "NISN tidak boleh kosong.";
+                isValid = false;
+            } else {
+                document.getElementById("nisnError").innerText = "";
+            }
+
+            // Validasi Nama
+            let name = document.getElementById("name").value;
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Nama tidak boleh kosong.";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").innerText = "";
+            }
+
+            // Validasi Kelas
+            let classValue = document.getElementById("class").value;
+            if (classValue === "") {
+                document.getElementById("classError").innerText = "Kelas tidak boleh kosong.";
+                isValid = false;
+            } else {
+                document.getElementById("classError").innerText = "";
+            }
+
+            // Validasi Sekolah
+            let school = document.getElementById("school").value;
+            if (school === "") {
+                document.getElementById("schoolError").innerText = "Sekolah tidak boleh kosong.";
+                isValid = false;
+            } else {
+                document.getElementById("schoolError").innerText = "";
+            }
+
+            // Validasi Password
+            let password = document.getElementById("password").value;
+            if (password !== "smk8cerdas") {
+                document.getElementById("passwordError").innerText = "Kata sandi salah.";
+                loginAttempts++;
+                if (loginAttempts >= 2) {
+                    document.getElementById("passwordHint").style.display = "block";
+                }
+                isValid = false;
+            } else {
+                document.getElementById("passwordError").innerText = "";
+                document.getElementById("passwordHint").style.display = "none";
+            }
+
+            // Jika semua validasi berhasil
+            if (isValid) {
+                alert("Hore kamu bisa!");
+                if (confirm("Apakah Anda ingin masuk?")) {
+                    window.location.href = "perpustakaan_spaceship_north.html";
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
